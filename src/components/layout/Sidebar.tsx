@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 import { useState } from "react";
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -18,6 +21,15 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+<<<<<<< HEAD
+// 1. Define what props this component needs
+interface SidebarProps {
+  collapsed: boolean;
+  setCollapsed: (collapsed: boolean) => void;
+}
+
+=======
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/" },
   { icon: Heart, label: "Heart Health", path: "/heart" },
@@ -30,8 +42,13 @@ const navItems = [
   { icon: Activity, label: "Analytics", path: "/analytics" },
 ];
 
+<<<<<<< HEAD
+// 2. Accept the props here
+const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
+=======
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
   const location = useLocation();
 
   return (
@@ -117,6 +134,10 @@ const Sidebar = () => {
           {!collapsed && <span>Settings</span>}
         </NavLink>
 
+<<<<<<< HEAD
+        {/* 3. Use the prop to update state */}
+=======
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
         <button
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
@@ -139,4 +160,8 @@ const Sidebar = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Sidebar;
+=======
+export default Sidebar;
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
