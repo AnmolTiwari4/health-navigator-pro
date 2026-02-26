@@ -7,8 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+<<<<<<< HEAD
 import { databases, DATABASE_ID, COLLECTIONS } from "@/lib/appwrite";
 import { ID } from "appwrite";
+=======
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,7 +19,11 @@ const AuthPage = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
   const { login, signup } = useAuth();
+=======
+  const { login, register } = useAuth();
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -26,17 +33,24 @@ const AuthPage = () => {
 
     try {
       if (isLogin) {
+<<<<<<< HEAD
         // --- LOGIN LOGIC ---
         await login(email, password);
         toast({ title: 'Welcome back!', description: 'Successfully logged in.' });
         navigate('/');
       } else {
         // --- SIGNUP LOGIC (WITH DATABASE CREATION) ---
+=======
+        await login(email, password);
+        toast({ title: 'Welcome back!', description: 'Successfully logged in.' });
+      } else {
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
         if (!name.trim()) {
           toast({ title: 'Error', description: 'Please enter your name.', variant: 'destructive' });
           setLoading(false);
           return;
         }
+<<<<<<< HEAD
 
         // 1. Create the Account
         await signup(email, password, name);
@@ -65,6 +79,13 @@ const AuthPage = () => {
       }
     } catch (error: any) {
       console.error(error);
+=======
+        await register(email, password, name);
+        toast({ title: 'Account created!', description: 'Welcome to CodeCure.' });
+      }
+      navigate('/');
+    } catch (error: any) {
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
       toast({
         title: 'Error',
         description: error.message || 'Something went wrong. Please try again.',
@@ -88,7 +109,11 @@ const AuthPage = () => {
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -115,7 +140,11 @@ const AuthPage = () => {
             Your Health Journey<br />
             <span className="text-primary">Starts Here</span>
           </h2>
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
           <div className="space-y-6">
             {features.map((feature, index) => (
               <motion.div
@@ -180,19 +209,35 @@ const AuthPage = () => {
             <div className="flex gap-1 p-1 mb-8 bg-muted/50 rounded-xl">
               <button
                 onClick={() => setIsLogin(true)}
+<<<<<<< HEAD
                 className={`flex-1 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${isLogin
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
                   }`}
+=======
+                className={`flex-1 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
+                  isLogin
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
               >
                 Sign In
               </button>
               <button
                 onClick={() => setIsLogin(false)}
+<<<<<<< HEAD
                 className={`flex-1 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${!isLogin
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
                   }`}
+=======
+                className={`flex-1 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
+                  !isLogin
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
               >
                 Sign Up
               </button>
@@ -299,4 +344,8 @@ const AuthPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default AuthPage;
+=======
+export default AuthPage;
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8

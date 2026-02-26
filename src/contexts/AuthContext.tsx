@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { account } from "@/lib/appwrite";
 import { ID, Models } from "appwrite";
@@ -8,11 +9,25 @@ interface AuthContextType {
   signup: (email: string, pass: string, name: string) => Promise<void>;
   logout: () => Promise<void>;
   loading: boolean;
+=======
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { account } from '@/lib/appwrite';
+import { ID, Models } from 'appwrite';
+import { User } from '@/types/health';
+
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string, name: string) => Promise<void>;
+  logout: () => Promise<void>;
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+<<<<<<< HEAD
   const [user, setUser] = useState<Models.User<Models.Preferences> | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -66,6 +81,43 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
+=======
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const checkUser = async () => {
+    try {
+      const session = await account.get();
+      setUser(session as unknown as User);
+    } catch {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    await account.createEmailPasswordSession(email, password);
+    await checkUser();
+  };
+
+  const register = async (email: string, password: string, name: string) => {
+    await account.create(ID.unique(), email, password, name);
+    await login(email, password);
+  };
+
+  const logout = async () => {
+    await account.deleteSession('current');
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
       {children}
     </AuthContext.Provider>
   );
@@ -73,8 +125,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
+<<<<<<< HEAD
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
+=======
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+>>>>>>> a66d32426c554a0d9380557ccf4f4c5ec76dacc8
